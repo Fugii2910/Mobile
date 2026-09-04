@@ -214,6 +214,37 @@ class _AgendamentoEventoTelaState extends State<AgendamentoEventoTela> {
               },
             ),
             const Divider(height: 32),
+
+            // 4. slider
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Quantidade de Convidados',
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+                Text(
+                  '${_quantidadeConvidados.round()} pessoas',
+                  style: const TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+            Slider(
+              value: _quantidadeConvidados,
+              min: 10,
+              max: 500,
+              divisions: 49,
+              label: _quantidadeConvidados.round().toString(),
+              onChanged: (novoValor) {
+                setState(() {
+                  _quantidadeConvidados = novoValor;
+                });
+                print(
+                  '[DEBUG - Slider] Quantidade de convidados: ${novoValor.round()}',
+                );
+              },
+            ),
+            const Divider(height: 32),
           ],
         ),
       ),
