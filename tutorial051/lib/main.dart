@@ -334,6 +334,51 @@ class _AgendamentoEventoTelaState extends State<AgendamentoEventoTela> {
               }).toList(),
             ),
             const Divider(height: 32),
+
+            // 8. switch
+            SwitchListTile(
+              title: const Text("Enviar lembrete Automático"),
+              subtitle: const Text(
+                'Notificar convidados 24 horas antes do evento',
+              ),
+              value: _notificacaoAtiva,
+              onChanged: (bool ativo) {
+                setState(() {
+                  _notificacaoAtiva = ativo;
+                });
+                print(
+                  '[DEBUG - Switch] Notificação automática alterada para: $ativo',
+                );
+              },
+            ),
+            const SizedBox(height: 24),
+
+            //botões de ação final (cancelar e salvar)
+            Row(
+              children: [
+                Expanded(
+                  child: OutlinedButton(
+                    onPressed: _resetarValores,
+                    style: OutlinedButton.styleFrom(
+                      foregroundColor: Colors.red,
+                      side: const BorderSide(color: Colors.red),
+                    ),
+                    child: const Text('Cancelar'),
+                  ),
+                ),
+                const SizedBox(width: 16),
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed: _salvarFormulario,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Theme.of(context).colorScheme.primary,
+                      foregroundColor: Colors.white,
+                    ),
+                    child: const Text('Salvar'),
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
       ),
