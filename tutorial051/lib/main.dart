@@ -280,6 +280,30 @@ class _AgendamentoEventoTelaState extends State<AgendamentoEventoTela> {
               ),
             ),
             const Divider(height: 32),
+
+            // 6. checkbox
+            Text(
+              'Serviços Adicionais',
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+            Column(
+              children: _servicosSelecionados.keys.map((servico) {
+                return CheckboxListTile(
+                  dense: true,
+                  title: Text(servico),
+                  value: _servicosSelecionados[servico],
+                  onChanged: (bool? marcado) {
+                    setState(() {
+                      _servicosSelecionados[servico] = marcado ?? false;
+                    });
+                    print(
+                      '[DEBUG - Checkbox] Serviço "$servico" alterado para: $marcado',
+                    );
+                  },
+                );
+              }).toList(),
+            ),
+            const Divider(height: 32),
           ],
         ),
       ),
