@@ -181,6 +181,39 @@ class _AgendamentoEventoTelaState extends State<AgendamentoEventoTela> {
               ],
             ),
             const Divider(height: 32),
+
+            // 3. menu (dropdownButton)
+            Text(
+              'Tipo de Evento',
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+            const SizedBox(height: 8),
+            DropdownButtonFormField<String>(
+              initialValue: _tipoEventoSelecionado,
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                contentPadding: EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 8,
+                ),
+              ),
+              items: ['Aniversário', 'Casamento', 'Corporativo', 'Outro']
+                  .map(
+                    (tipo) => DropdownMenuItem(value: tipo, child: Text(tipo)),
+                  )
+                  .toList(),
+              onChanged: (novoValor) {
+                if (novoValor != null) {
+                  setState(() {
+                    _tipoEventoSelecionado = novoValor;
+                  });
+                  print(
+                    '[DEBUG - Menu] Tipo de evento selecionado: $novoValor',
+                  );
+                }
+              },
+            ),
+            const Divider(height: 32),
           ],
         ),
       ),
